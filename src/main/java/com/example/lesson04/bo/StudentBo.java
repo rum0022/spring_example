@@ -15,4 +15,9 @@ public class StudentBo {
 	public void addStudent(Student student) {
 		studentMapper.insertStudent(student);
 	}
+	
+	public Student getRealtorById(int id) {
+		return studentMapper.selectStudentById(id);
+	}
 }
+
