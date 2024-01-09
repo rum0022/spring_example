@@ -46,8 +46,13 @@ public class Lesson07Ex02RestController {
 		// 8. 이름이 김으로 시작하는 데이터 조회(like문 - 김%)
 		//return studentRepository.findByNameStartingWith("김");
 		
-		// 9. id가 1~5인 데이터 조회(범위:between)
-		//return studentRepository.findByIdBetween(1, 5);
-		
+		//9. id가 1~5인 데이터 조회(범위:between)
+		return studentRepository.findByIdBetween(1, 5);
+	}
+	
+	@GetMapping("/2")
+	public List<StudentEntity> getStudent() {
+		// 장래희망이 `디자이너`인 데이터 조회
+		return studentRepository.findByDreamJob("디자이너");
 	}
 }

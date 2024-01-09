@@ -1,9 +1,10 @@
 package com.example.lesson07.respository;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.example.lesson07.entity.StudentEntity;
 
@@ -42,6 +43,11 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Integer>
 	public List<StudentEntity> findByNameStartingWith(String name);
 	
 	public List<StudentEntity> findByIdBetween(int startId, int endId);
+	
+	// ex02/2 -JPQL(entity에 조회하고 db에 안감) 쿼리어노테이션 쓸때, Db에 직접 할때
+	//@Query(value = "select st from StudentEntity st where st.dreamJob =:dreamJob") // JPQL문법(엔티티조회)
+	@Query(value = "select * from new_student where dreamJob =:dreamJob", nativeQuery = true) // nativeQuery SQL문 조회
+	public List<StudentEntity> findByDreamJob(@Param("dreamJob") String dreamJob);
 	
 	
 	}
